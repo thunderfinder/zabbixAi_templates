@@ -688,8 +688,7 @@ zabbix_export:
                   height: '3'
                   fields:
                     - type: ITEM
-                      name: itemid
-                      value: 'upsStatus'
+                      name: itemid.item.0
                 - type: item
                   name: 'Battery Charge'
                   width: '12'
@@ -697,8 +696,7 @@ zabbix_export:
                   y: '3'
                   fields:
                     - type: ITEM
-                      name: itemid
-                      value: 'upsBatteryCharge'
+                      name: itemid.item.0
                 - type: item
                   name: 'Output Load'
                   width: '12'
@@ -706,8 +704,7 @@ zabbix_export:
                   y: '6'
                   fields:
                     - type: ITEM
-                      name: itemid
-                      value: 'upsOutputLoad'
+                      name: itemid.item.0
                 - type: graph
                   name: 'Input/Output Voltage'
                   width: '12'
@@ -715,8 +712,7 @@ zabbix_export:
                   y: '9'
                   fields:
                     - type: GRAPH
-                      name: graphid
-                      value: 'Input/Output Voltage'
+                      name: graphid.graph.0
                 - type: graph
                   name: 'Battery Charge & Runtime'
                   width: '12'
@@ -724,8 +720,7 @@ zabbix_export:
                   y: '14'
                   fields:
                     - type: GRAPH
-                      name: graphid
-                      value: 'Battery Charge & Runtime'
+                      name: graphid.graph.0
       valuemaps:
         - uuid: 5a19b6264ee54d8a9d206ec905a7be79
           name: 'UPS Battery Rechargeable'
