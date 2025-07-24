@@ -1,0 +1,810 @@
+```yaml
+zabbix_export:
+  version: '7.0'
+  template_groups:
+    - uuid: 4edda5c906e740298f0b777911047479
+      name: 'Templates/Power'
+  templates:
+    - uuid: 5a19b6264ee54d8a9d206ec905a7be5b
+      template: 'Template UPS Delta SNMP'
+      name: 'Template UPS Delta SNMP'
+      description: |
+        Template for Delta UPS units using DeltaUPS-MIB.
+        MIBs used:
+        DELTAUPS-MIB
+      groups:
+        - name: 'Templates/Power'
+      items:
+        - uuid: 7b3e0e180d804c52a9010d7d8b8f1d8a
+          name: 'Battery status'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.1.0
+          key: 'upsBatteryStatus'
+          delay: 1m
+          valuemap:
+            name: 'UPS Battery Status'
+          trends: '0'
+          status: DISABLED
+          description: |
+            upsBatteryStatus OBJECT-TYPE
+            SYNTAX INTEGER {
+            unknown(1),
+            batteryNormal(2),
+            batteryLow(3),
+            batteryInFaultCondition(4)
+            }
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The indication of the UPS battery status."
+            ::= { upsBattery 1 }
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 6e2c62a01f5d4b8a8c7a0a1a1a1a1a1a
+          name: 'Battery temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.2.0
+          key: 'upsBatteryTemperature'
+          delay: 5m
+          value_type: FLOAT
+          units: °C
+          description: |
+            upsBatteryTemperature OBJECT-TYPE
+            SYNTAX INTEGER (-32768..32767)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The battery temperature expressed in 1/10 degree Centigrade.
+            (-3276.8 to 3276.7 degrees Centigrade)"
+            ::= { upsBattery 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be5c
+          name: 'Battery runtime remaining'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.3.0
+          key: 'upsBatteryRunTimeRemaining'
+          delay: 1m
+          units: s
+          description: |
+            upsBatteryRunTimeRemaining OBJECT-TYPE
+            SYNTAX INTEGER (0..2147483647)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The battery run-time remaining before battery exhaustion.
+            The time resolution is in seconds."
+            ::= { upsBattery 3 }
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be5d
+          name: 'Battery charge'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.4.0
+          key: 'upsBatteryCharge'
+          delay: 1m
+          units: '%'
+          description: |
+            upsBatteryCharge OBJECT-TYPE
+            SYNTAX INTEGER (0..100)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The percentage of battery charge."
+            ::= { upsBattery 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be5e
+          name: 'Battery rechargeable'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.5.0
+          key: 'upsBatteryRechargeable'
+          delay: 1h
+          valuemap:
+            name: 'UPS Battery Rechargeable'
+          trends: '0'
+          description: |
+            upsBatteryRechargeable OBJECT-TYPE
+            SYNTAX INTEGER {
+            unknown(1),
+            rechargeable(2),
+            notRechargeable(3)
+            }
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The indication of the UPS battery rechargeable."
+            ::= { upsBattery 5 }
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be5f
+          name: 'Battery voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.7.0
+          key: 'upsBatteryVoltage'
+          delay: 5m
+          value_type: FLOAT
+          units: V
+          description: |
+            upsBatteryVoltage OBJECT-TYPE
+            SYNTAX INTEGER (-32768..32767)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The battery voltage expressed in 0.1 Volt DC."
+            ::= { upsBattery 7 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be60
+          name: 'Battery current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.8.0
+          key: 'upsBatteryCurrent'
+          delay: 5m
+          value_type: FLOAT
+          units: A
+          description: |
+            upsBatteryCurrent OBJECT-TYPE
+            SYNTAX INTEGER (-32768..32767)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The battery current expressed in 0.1 Amp DC."
+            ::= { upsBattery 8 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be61
+          name: 'Battery capacity'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.2.9.0
+          key: 'upsBatteryCapacity'
+          delay: 1h
+          units: 'Ampere-hour'
+          description: |
+            upsBatteryCapacity OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The battery capacity expressed in Ampere-hour."
+            ::= { upsBattery 9 }
+          tags:
+            - tag: Application
+              value: 'UPS Battery'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be62
+          name: 'Input frequency'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.3.2.0
+          key: 'upsInputFrequency'
+          delay: 5m
+          value_type: FLOAT
+          units: Hz
+          description: |
+            upsInputFrequency OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The input frequency expressed in 0.1 Hertz."
+            ::= { upsInput 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Input'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be63
+          name: 'Input voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.3.3.1.2.1
+          key: 'upsInputVoltage'
+          delay: 5m
+          value_type: FLOAT
+          units: V
+          description: |
+            upsInputVoltage OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The input voltage expressed in 0.1 Volt DC or AC."
+            ::= { upsInputEntry 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Input'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be64
+          name: 'Input current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.3.3.1.3.1
+          key: 'upsInputCurrent'
+          delay: 5m
+          value_type: FLOAT
+          units: A
+          description: |
+            upsInputCurrent OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The input current expressed in 0.1 Amp DC or AC."
+            ::= { upsInputEntry 3 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Input'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be65
+          name: 'Input power'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.3.3.1.4.1
+          key: 'upsInputPower'
+          delay: 5m
+          value_type: FLOAT
+          units: W
+          description: |
+            upsInputPower OBJECT-TYPE
+            SYNTAX INTEGER (0..2147483647)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The input power expressed in Watt."
+            ::= { upsInputEntry 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Input'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be66
+          name: 'Output frequency'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.4.2.0
+          key: 'upsOutputFrequency'
+          delay: 5m
+          value_type: FLOAT
+          units: Hz
+          description: |
+            upsOutputFrequency OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The output frequency expressed in 0.1 Hertz."
+            ::= { upsOutput 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Output'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be67
+          name: 'Output voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.4.3.1.2.1
+          key: 'upsOutputVoltage'
+          delay: 5m
+          value_type: FLOAT
+          units: V
+          description: |
+            upsOutputVoltage OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The output voltage expressed in 0.1 Volt DC or AC."
+            ::= { upsOutputEntry 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Output'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be68
+          name: 'Output current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.4.3.1.3.1
+          key: 'upsOutputCurrent'
+          delay: 5m
+          value_type: FLOAT
+          units: A
+          description: |
+            upsOutputCurrent OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The output current expressed in 0.1 Amp DC or AC."
+            ::= { upsOutputEntry 3 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Output'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be69
+          name: 'Output power'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.4.3.1.4.1
+          key: 'upsOutputPower'
+          delay: 5m
+          value_type: FLOAT
+          units: W
+          description: |
+            upsOutputPower OBJECT-TYPE
+            SYNTAX INTEGER (0..2147483647)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The output power expressed in Watt."
+            ::= { upsOutputEntry 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Output'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6a
+          name: 'Output load'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.4.4.0
+          key: 'upsOutputLoad'
+          delay: 5m
+          units: '%'
+          description: |
+            upsOutputLoad OBJECT-TYPE
+            SYNTAX INTEGER (0..100)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The percentage of UPS load."
+            ::= { upsOutput 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Output'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6b
+          name: 'Bypass frequency'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.5.2.0
+          key: 'upsBypassFrequency'
+          delay: 5m
+          value_type: FLOAT
+          units: Hz
+          description: |
+            upsBypassFrequency OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The bypass frequency expressed in 0.1 Hertz."
+            ::= { upsBypass 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Bypass'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6c
+          name: 'Bypass voltage'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.5.3.1.2.1
+          key: 'upsBypassVoltage'
+          delay: 5m
+          value_type: FLOAT
+          units: V
+          description: |
+            upsBypassVoltage OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The bypass voltage expressed in 0.1 Volt DC or AC."
+            ::= { upsBypassEntry 2 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Bypass'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6d
+          name: 'Bypass current'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.5.3.1.3.1
+          key: 'upsBypassCurrent'
+          delay: 5m
+          value_type: FLOAT
+          units: A
+          description: |
+            upsBypassCurrent OBJECT-TYPE
+            SYNTAX INTEGER (0..65535)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The bypass current expressed in 0.1 Amp DC or AC."
+            ::= { upsBypassEntry 3 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Bypass'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6e
+          name: 'Bypass power'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.5.3.1.4.1
+          key: 'upsBypassPower'
+          delay: 5m
+          value_type: FLOAT
+          units: W
+          description: |
+            upsBypassPower OBJECT-TYPE
+            SYNTAX INTEGER (0..2147483647)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The bypass power expressed in Watt."
+            ::= { upsBypassEntry 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Bypass'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be6f
+          name: 'UPS model'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.1.0
+          key: 'upsIdentModel'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentModel OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..31))
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The model name of the UPS."
+            ::= { upsIdent 1 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be70
+          name: 'UPS firmware version'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.2.0
+          key: 'upsIdentUPSSoftwareVersion'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentUPSSoftwareVersion OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..31))
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The UPS firmware/software version(s)."
+            ::= { upsIdent 2 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be71
+          name: 'UPS agent software version'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.3.0
+          key: 'upsIdentAgentSoftwareVersion'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentAgentSoftwareVersion OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..31))
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The UPS agent software version."
+            ::= { upsIdent 3 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be72
+          name: 'UPS manufacturer'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.4.0
+          key: 'upsIdentManufacturer'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentManufacturer OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..31))
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The name of the UPS manufacturer."
+            ::= { upsIdent 4 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be73
+          name: 'UPS serial number'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.5.0
+          key: 'upsIdentUPSSerialNumber'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentUPSSerialNumber OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..31))
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The serial number of the UPS."
+            ::= { upsIdent 5 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be74
+          name: 'UPS name'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.1.6.0
+          key: 'upsIdentName'
+          delay: 1h
+          trends: '0'
+          value_type: CHAR
+          description: |
+            upsIdentName OBJECT-TYPE
+            SYNTAX DisplayString (SIZE (0..63))
+            MAX-ACCESS read-write
+            STATUS current
+            DESCRIPTION
+            "A string identifying the UPS. This object should be set by
+            the administrator."
+            ::= { upsIdent 6 }
+          tags:
+            - tag: Application
+              value: 'UPS Identity'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be75
+          name: 'UPS status'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.7.1.0
+          key: 'upsStatus'
+          delay: 1m
+          valuemap:
+            name: 'UPS Status'
+          trends: '0'
+          description: |
+            upsStatus OBJECT-TYPE
+            SYNTAX INTEGER {
+            unknown(1),
+            onLine(2),
+            onBattery(3),
+            onBoost(4),
+            onSleep(5),
+            off(6),
+            rebooting(7),
+            onBypass(8),
+            onBuck(9),
+            onOverload(10)
+            }
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The indication of the UPS status."
+            ::= { upsControl 1 }
+          tags:
+            - tag: Application
+              value: 'UPS Status'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be76
+          name: 'Ambient temperature'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.8.1.0
+          key: 'upsAmbientTemperature'
+          delay: 5m
+          value_type: FLOAT
+          units: °C
+          description: |
+            upsAmbientTemperature OBJECT-TYPE
+            SYNTAX INTEGER (-32768..32767)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The ambient temperature expressed in 1/10 degree Centigrade.
+            (-3276.8 to 3276.7 degrees Centigrade)"
+            ::= { upsAmbient 1 }
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: 'UPS Ambient'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be77
+          name: 'Ambient humidity'
+          type: SNMP_AGENT
+          snmp_oid: 1.3.6.1.4.1.2254.2.1.8.2.0
+          key: 'upsAmbientHumidity'
+          delay: 5m
+          units: '%'
+          description: |
+            upsAmbientHumidity OBJECT-TYPE
+            SYNTAX INTEGER (0..100)
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+            "The ambient relative humidity expressed in percentage."
+            ::= { upsAmbient 2 }
+          tags:
+            - tag: Application
+              value: 'UPS Ambient'
+      tags:
+        - tag: class
+          value: device
+        - tag: target
+          value: ups
+      macros:
+        - macro: '{$SNMP.TIMEOUT}'
+          value: 5m
+        - macro: '{$TEMP_CRIT:"Delta UPS"}'
+          value: '40'
+        - macro: '{$TEMP_WARN:"Delta UPS"}'
+          value: '35'
+        - macro: '{$UPS.BATTERY.RUNTIME.CRIT.MINUTES}'
+          value: '5'
+        - macro: '{$UPS.LOAD.CRIT.PERCENT}'
+          value: '95'
+        - macro: '{$UPS.LOAD.WARN.PERCENT}'
+          value: '85'
+      dashboards:
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be78
+          name: 'UPS Dashboard'
+          pages:
+            - widgets:
+                - type: item
+                  name: 'UPS Status'
+                  width: '12'
+                  height: '3'
+                  fields:
+                    - type: ITEM
+                      name: itemid
+                      value: 'upsStatus'
+                - type: item
+                  name: 'Battery Charge'
+                  width: '12'
+                  height: '3'
+                  y: '3'
+                  fields:
+                    - type: ITEM
+                      name: itemid
+                      value: 'upsBatteryCharge'
+                - type: item
+                  name: 'Output Load'
+                  width: '12'
+                  height: '3'
+                  y: '6'
+                  fields:
+                    - type: ITEM
+                      name: itemid
+                      value: 'upsOutputLoad'
+                - type: graph
+                  name: 'Input/Output Voltage'
+                  width: '12'
+                  height: '5'
+                  y: '9'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value: 'Input/Output Voltage'
+                - type: graph
+                  name: 'Battery Charge & Runtime'
+                  width: '12'
+                  height: '5'
+                  y: '14'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value: 'Battery Charge & Runtime'
+      valuemaps:
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be79
+          name: 'UPS Battery Rechargeable'
+          mappings:
+            - value: '1'
+              newvalue: Unknown
+            - value: '2'
+              newvalue: Rechargeable
+            - value: '3'
+              newvalue: 'Not Rechargeable'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be7a
+          name: 'UPS Battery Status'
+          mappings:
+            - value: '1'
+              newvalue: Unknown
+            - value: '2'
+              newvalue: Normal
+            - value: '3'
+              newvalue: Low
+            - value: '4'
+              newvalue: 'In Fault Condition'
+        - uuid: 5a19b6264ee54d8a9d206ec905a7be7b
+          name: 'UPS Status'
+          mappings:
+            - value: '1'
+              newvalue: Unknown
+            - value: '2'
+              newvalue: 'On Line'
+            - value: '3'
+              newvalue: 'On Battery'
+            - value: '4'
+              newvalue: 'On Boost'
+            - value: '5'
+              newvalue: Sleep
+            - value: '6'
+              newvalue: Off
+            - value: '7'
+              newvalue: Rebooting
+            - value: '8'
+              newvalue: 'On Bypass'
+            - value: '9'
+              newvalue: 'On Buck'
+            - value: '10'
+              newvalue: Overload
+  graphs:
+    - uuid: 5a19b6264ee54d8a9d206ec905a7be7c
+      name: 'Battery Charge & Runtime'
+      ymin_type_1: FIXED
+      ymax_type_1: FIXED
+      ymax_item_1:
+        host: 'Template UPS Delta SNMP'
+        key: 'upsBatteryCharge'
+      graph_items:
+        - drawtype: BOLD_LINE
+          color: 0080FF
+          item:
+            host: 'Template UPS Delta SNMP'
+            key: 'upsBatteryCharge'
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: FF8000
+          yaxisside: RIGHT
+          item:
+            host: 'Template UPS Delta SNMP'
+            key: 'upsBatteryRunTimeRemaining'
+    - uuid: 5a19b6264ee54d8a9d206ec905a7be7d
+      name: 'Input/Output Voltage'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: BOLD_LINE
+          color: 0080FF
+          item:
+            host: 'Template UPS Delta SNMP'
+            key: 'upsInputVoltage'
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: FF8000
+          item:
+            host: 'Template UPS Delta SNMP'
+            key: 'upsOutputVoltage'
+```
