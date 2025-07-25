@@ -2,8 +2,8 @@ zabbix_export:
   version: '7.0'
   templates:
     - uuid: 6e8d9f5a3b4c6d7e8f9a0b1c2d3e4f5a
-      template: 'UPS Delta SNMPv1 Full v4'
-      name: 'UPS Delta SNMPv1 Full v4'
+      template: 'UPS Delta SNMPv1 Full v5'
+      name: 'UPS Delta SNMPv1 Full v5'
       description: |
         Plantilla completa para UPS Delta utilizando el MIB específico DeltaUPS-MIB.
         Basada en el archivo DeltaUPS-MIB.txt, snmpwalks realizados y el archivo delta_ups_exports2.csv.
@@ -22,7 +22,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The name of the UPS manufacturer.'
           tags:
             - tag: Application
@@ -36,13 +36,13 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The UPS Model designation.'
           tags:
             - tag: Application
               value: Identification
 
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e82
+        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6d-7e82
           name: 'UPS Firmware Version'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.3.0' # dupsIdentUPSSoftwareVersion.0
@@ -50,13 +50,13 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The UPS firmware/software version(s).'
           tags:
             - tag: Application
               value: Identification
 
-        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f93
+        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d73
           name: 'UPS Agent Software Version'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.4.0' # dupsIdentAgentSoftwareVersion.0
@@ -64,13 +64,13 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The UPS agent software version.'
           tags:
             - tag: Application
               value: Identification
 
-        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a04
+        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e84
           name: 'UPS Name'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.5.0' # dupsIdentName.0
@@ -78,13 +78,13 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'A string identifying the UPS. This object should be set by the administrator.'
           tags:
             - tag: Application
               value: Identification
 
-        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b15
+        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f95
           name: 'Attached Devices'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.6.0' # dupsAttachedDevices.0
@@ -92,14 +92,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'A string identifying the devices attached to the output(s) of the UPS.'
           tags:
             - tag: Application
               value: Identification
 
         # --- dupsRating (Ratings) ---
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c26
+        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a06
           name: 'Rating Output VA'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.7.0' # dupsRatingOutputVA.0
@@ -107,14 +107,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: 'VA'
           description: 'The magnitude of the nominal output VA rating.'
           tags:
             - tag: Application
               value: Rating
 
-        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d37
+        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b17
           name: 'Rating Input Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.10.0' # dupsRatingInputVoltage.0
@@ -122,14 +122,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: V
           description: 'The magnitude of the input line voltage in Volts.'
           tags:
             - tag: Application
               value: Rating
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e48
+        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c28
           name: 'Rating Battery Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.1.12.0' # dupsRatingBatteryVoltage.0
@@ -137,7 +137,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: V
           description: 'The magnitude of the nominal battery voltage in Volts.'
           tags:
@@ -145,7 +145,7 @@ zabbix_export:
               value: Rating
 
         # --- dupsBattery (Battery) ---
-        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f59
+        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d39
           name: 'Battery Condition'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.1.0' # dupsBatteryCondition.0
@@ -153,7 +153,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: |
             The overall condition of the UPS batteries.
             (Valor específico depende de la definición en el MIB Delta)
@@ -161,7 +161,7 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6a
+        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4a
           name: 'Battery Status'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.2.0' # dupsBatteryStatus.0
@@ -169,7 +169,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: |
             The status of the UPS batteries.
             (Valor específico depende de la definición en el MIB Delta)
@@ -177,13 +177,13 @@ zabbix_export:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5a-6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.battery.status)<>2' # Asumiendo 2=normal basado en estándares comunes
+            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5b
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.battery.status)<>2' # Asumiendo 2=normal basado en estándares comunes
               name: 'UPS Battery Not Normal'
               priority: HIGH
               description: 'The UPS battery status is not normal.'
 
-        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6b-7c8d
+        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6c
           name: 'Battery Charge Percentage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.3.0' # dupsBatteryCharge.0
@@ -191,28 +191,28 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'An estimate of the battery charge state expressed as a percentage of full charge.'
           tags:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7c-8d9e
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
               name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
               priority: HIGH
               description: 'The UPS battery charge is critically low.'
-            - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8d-9e0f
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
+            - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8e
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
               name: 'UPS Battery Charge Low (<{$BATTERY_CHARGE.WARN.MIN}%)'
               priority: WARNING
               description: 'The UPS battery charge is low.'
               dependencies:
                 - name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v4/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v5/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
 
-        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9e-0f1a
+        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9f
           name: 'Battery Remaining Time (Estimated)'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.5.0' # dupsBatteryEstimatedTime.0
@@ -220,20 +220,20 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: min
           description: 'An estimate of the time to battery charge depletion under the present load conditions.'
           tags:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0f-1a2b
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
+            - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0a
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
               name: 'UPS Battery Runtime Low (<{$BATTERY_RUNTIME.CRIT.MIN.WARN} min)'
               priority: HIGH
               description: 'The UPS battery runtime remaining is low.'
 
-        - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1a-2b3c
+        - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1b
           name: 'Battery Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.6.0' # dupsBatteryVoltage.0
@@ -241,7 +241,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The magnitude of the battery voltage in 1/10 Volt DC.'
           preprocessing:
@@ -252,7 +252,7 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2b-3c4d
+        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2c
           name: 'Battery Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.7.0' # dupsBatteryCurrent.0
@@ -260,7 +260,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The magnitude of the battery current in 1/10 Amp DC.'
           preprocessing:
@@ -271,7 +271,7 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3c-4d5e
+        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3d
           name: 'Battery Capacity'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.8.0' # dupsBatteryCapacity.0
@@ -279,14 +279,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'The remaining battery capacity expressed in percent.'
           tags:
             - tag: Application
               value: Battery
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4d-5e6f
+        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4e
           name: 'Battery Temperature'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.9.0' # dupsTemperature.0
@@ -294,14 +294,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: C
           description: 'The ambient temperature at or near the UPS Battery casing.'
           tags:
             - tag: Application
               value: Battery
 
-        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5e-6f7a
+        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5f
           name: 'Last Battery Replacement Date'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.10.0' # dupsLastReplaceDate.0
@@ -309,13 +309,13 @@ zabbix_export:
           delay: 1d
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The last battery replacement date. The format is YYYYMMDD.'
           tags:
             - tag: Application
               value: Battery
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6f-7a8b
+        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6a
           name: 'Next Battery Replacement Date'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.7.11.0' # dupsNextReplaceDate.0
@@ -323,7 +323,7 @@ zabbix_export:
           delay: 1d
           history: 7d
           trends: '0'
-          value_type: 1 # Character (CHAR)
+          value_type: CHAR # Character
           description: 'The next battery replacement date. The format is YYYYMMDD.'
           tags:
             - tag: Application
@@ -331,7 +331,7 @@ zabbix_export:
 
         # --- dupsInput (Input) ---
         # Se asume sistema trifásico basado en la presencia de InputLine 1, 2 y 3
-        - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7a-8b9c
+        - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7b
           name: 'Input Lines Number'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.1.0' # dupsInputNumLines.0
@@ -339,14 +339,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'The number of input lines utilized in this device.'
           tags:
             - tag: Application
               value: Input
 
         # --- Input Line 1 ---
-        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8b-9c0d
+        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8c
           name: 'Input L1 Frequency'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.2.0' # dupsInputFrequency1.0
@@ -354,7 +354,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 1 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -365,7 +365,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9c-0d1e
+        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9d
           name: 'Input L1 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.3.0' # dupsInputVoltage1.0
@@ -373,7 +373,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -384,7 +384,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0d-1e2f
+        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0e
           name: 'Input L1 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.4.0' # dupsInputCurrent1.0
@@ -392,7 +392,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 1 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -404,7 +404,7 @@ zabbix_export:
               value: Input
 
         # --- Input Line 2 ---
-        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1e-2f3a
+        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1f
           name: 'Input L2 Frequency'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.5.0' # dupsInputFrequency2.0
@@ -412,7 +412,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 2 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -423,7 +423,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2f-3a4b
+        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2a
           name: 'Input L2 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.6.0' # dupsInputVoltage2.0
@@ -431,7 +431,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 2 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -442,7 +442,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3a-4b5c
+        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3b
           name: 'Input L2 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.7.0' # dupsInputCurrent2.0
@@ -450,7 +450,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 2 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -462,7 +462,7 @@ zabbix_export:
               value: Input
 
         # --- Input Line 3 ---
-        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4b-5c6d
+        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4c
           name: 'Input L3 Frequency'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.8.0' # dupsInputFrequency3.0
@@ -470,7 +470,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 3 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -481,7 +481,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5c-6d7e
+        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5d
           name: 'Input L3 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.9.0' # dupsInputVoltage3.0
@@ -489,7 +489,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 3 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -500,7 +500,7 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6d-7e8f
+        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6e
           name: 'Input L3 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.4.10.0' # dupsInputCurrent3.0
@@ -508,7 +508,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 3 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -520,7 +520,7 @@ zabbix_export:
               value: Input
 
         # --- dupsOutput (Output) ---
-        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7e-8f9a
+        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7f
           name: 'Output Source'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.1.0' # dupsOutputSource.0
@@ -528,7 +528,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: |
             The present source of output power.
             normal(0),battery(1),bypass(2),reducing(3),boosting(4),manualBypass(5),other(6),none(7)
@@ -538,13 +538,13 @@ zabbix_export:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8f-9a0b
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.source)<>0' # Asumiendo 0=normal según el MIB
+            - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8a
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.source)<>0' # Asumiendo 0=normal según el MIB
               name: 'UPS Output Source Changed'
               priority: WARNING
               description: 'The UPS output source has changed from normal.'
 
-        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9a-0b1c
+        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9b
           name: 'Output Frequency'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.2.0' # dupsOutputFrequency.0
@@ -552,7 +552,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 Hz'
           description: 'The present output frequency in 1/10 Hz.'
           preprocessing:
@@ -563,7 +563,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0b-1c2d
+        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0c
           name: 'Output Lines Number'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.3.0' # dupsOutputNumLines.0
@@ -571,14 +571,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'The number of output lines utilized in this device.'
           tags:
             - tag: Application
               value: Output
 
         # --- Output Line 1 ---
-        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1c-2d3e
+        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1d
           name: 'Output L1 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.4.0' # dupsOutputVoltage1.0
@@ -586,7 +586,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -597,7 +597,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2d-3e4f
+        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2e
           name: 'Output L1 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.5.0' # dupsOutputCurrent1.0
@@ -605,7 +605,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 1 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -616,7 +616,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3e-4f5a
+        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3f
           name: 'Output L1 Power'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.6.0' # dupsOutputPower1.0
@@ -624,14 +624,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: W
           description: 'The Output line 1 real power of the UPS system in watts.'
           tags:
             - tag: Application
               value: Output
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4f-5a6b
+        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4b
           name: 'Output L1 Load Percentage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.7.0' # dupsOutputLoad1.0
@@ -639,29 +639,29 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 1 load expressed in percent of rated capacity.'
           tags:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5a-6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5c
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L1 load is critically high.'
-            - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6b-7c8d
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L1 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L1 load is high.'
               dependencies:
                 - name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 2 ---
-        - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7c-8d9e
+        - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7e
           name: 'Output L2 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.8.0' # dupsOutputVoltage2.0
@@ -669,7 +669,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 2 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -680,7 +680,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8d-9e0f
+        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8f
           name: 'Output L2 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.9.0' # dupsOutputCurrent2.0
@@ -688,7 +688,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 2 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -699,7 +699,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9e-0f1a
+        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9a
           name: 'Output L2 Power'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.10.0' # dupsOutputPower2.0
@@ -707,14 +707,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: W
           description: 'The Output line 2 real power of the UPS system in watts.'
           tags:
             - tag: Application
               value: Output
 
-        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0f-1a2b
+        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0b
           name: 'Output L2 Load Percentage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.11.0' # dupsOutputLoad2.0
@@ -722,29 +722,29 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 2 load expressed in percent of rated capacity.'
           tags:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1a-2b3c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1c
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L2 load is critically high.'
-            - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2b-3c4d
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L2 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L2 load is high.'
               dependencies:
                 - name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 3 ---
-        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3c-4d5e
+        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3e
           name: 'Output L3 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.12.0' # dupsOutputVoltage3.0
@@ -752,7 +752,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 3 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -763,7 +763,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4d-5e6f
+        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4f
           name: 'Output L3 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.13.0' # dupsOutputCurrent3.0
@@ -771,7 +771,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 3 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -782,7 +782,7 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5e-6f7a
+        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5a
           name: 'Output L3 Power'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.14.0' # dupsOutputPower3.0
@@ -790,14 +790,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: W
           description: 'The Output line 3 real power of the UPS system in watts.'
           tags:
             - tag: Application
               value: Output
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6f-7a8b
+        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6b
           name: 'Output L3 Load Percentage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.5.15.0' # dupsOutputLoad3.0
@@ -805,29 +805,29 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 3 load expressed in percent of rated capacity.'
           tags:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7a-8b9c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7c
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L3 load is critically high.'
-            - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8b-9c0d
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L3 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L3 load is high.'
               dependencies:
                 - name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v4/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v5/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- dupsBypass (Bypass) ---
-        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9c-0d1e
+        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9e
           name: 'Bypass Frequency'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.6.1.0' # dupsBypassFrequency.0
@@ -835,7 +835,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current bypass frequency in 1/10 Hz.'
           preprocessing:
@@ -846,7 +846,7 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0d-1e2f
+        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0f
           name: 'Bypass Lines Number'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.6.2.0' # dupsBypassNumLines.0
@@ -854,14 +854,14 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'The number of bypass lines utilized in this device.'
           tags:
             - tag: Application
               value: Bypass
 
         # --- Bypass Line 1 ---
-        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1e-2f3a
+        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1a
           name: 'Bypass L1 Voltage'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.6.3.0' # dupsBypassVoltage1.0
@@ -869,7 +869,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 V'
           description: 'The bypass line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -880,7 +880,7 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2f-3a4b
+        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2b
           name: 'Bypass L1 Current'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.6.4.0' # dupsBypassCurrent1.0
@@ -888,7 +888,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '0.1 A'
           description: 'The bypass line 1 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -899,7 +899,7 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3a-4b5c
+        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3c
           name: 'Bypass L1 Power'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.6.5.0' # dupsBypassPower1.0
@@ -907,7 +907,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: W
           description: 'The bypass line 1 real power of the UPS system in watts.'
           tags:
@@ -915,7 +915,7 @@ zabbix_export:
               value: Bypass
 
         # --- dupsEnvironment (Environment) ---
-        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4b-5c6d
+        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4d
           name: 'Environment Temperature'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.10.1.0' # dupsEnvTemperature.0
@@ -923,14 +923,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: C
           description: 'The ambient environmental temperature.'
           tags:
             - tag: Application
               value: Environment
 
-        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5c-6d7e
+        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5e
           name: 'Environment Humidity'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.10.2.0' # dupsEnvHumidity.0
@@ -938,7 +938,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           units: '%'
           description: 'The environmental relative humidity.'
           tags:
@@ -947,7 +947,7 @@ zabbix_export:
 
         # --- dupsAlarm (Alarms) ---
         # Incluimos varios de los muchos alarm bits disponibles, basados en el CSV
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6d-7e8f
+        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6f
           name: 'Alarm - Power Fail'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.2.0' # dupsAlarmPowerFail.0
@@ -955,19 +955,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Does the input power fail?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7e-8f9a
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.powerfail)=1'
+            - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7a
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.powerfail)=1'
               name: 'UPS Power Fail Alarm'
               priority: HIGH
               description: 'Power failed! The UPS is operating on battery power.'
 
-        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8f-9a0b
+        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8b
           name: 'Alarm - Battery Low'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.3.0' # dupsAlarmBatteryLow.0
@@ -975,19 +975,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Are the UPS batteries low?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9a-0b1c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.batterylow)=1'
+            - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9c
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.batterylow)=1'
               name: 'UPS Battery Low Alarm'
               priority: HIGH
               description: 'The UPS batteries are low and will soon be exhausted.'
 
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0b-1c2d
+        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0d
           name: 'Alarm - Load Warning'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.4.0' # dupsAlarmLoadWarning.0
@@ -995,19 +995,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Does the UPS load warning?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1c-2d3e
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.loadwarning)=1'
+            - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1e
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.loadwarning)=1'
               name: 'UPS Load Warning Alarm'
               priority: WARNING
               description: 'The UPS load is approaching a warning level.'
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2d-3e4f
+        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2f
           name: 'Alarm - Load Severity'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.5.0' # dupsAlarmLoadSeverity.0
@@ -1015,19 +1015,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Does the UPS load severity?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3e-4f5a
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.loadseverity)=1'
+            - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3a
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.loadseverity)=1'
               name: 'UPS Load Severity Alarm'
               priority: HIGH
               description: 'The UPS load is at a severity level.'
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4f-5a6b
+        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4c
           name: 'Alarm - Output Overload'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.12.0' # dupsAlarmOutputOverload.0
@@ -1035,19 +1035,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'The UPS overload!.'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5a-6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.outputoverload)=1'
+            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.outputoverload)=1'
               name: 'UPS Output Overload Alarm'
               priority: HIGH
               description: 'The UPS is overloaded!'
 
-        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6b-7c8d
+        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6e
           name: 'Alarm - Temperature'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.18.0' # dupsAlarmTemperature.0
@@ -1055,19 +1055,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'The UPS is over heat.'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7c-8d9e
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.temperature)=1'
+            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7f
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.temperature)=1'
               name: 'UPS Over Temperature Alarm'
               priority: HIGH
               description: 'The UPS is overheating.'
 
-        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8d-9e0f
+        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8a
           name: 'Alarm - UPS Off'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.21.0' # dupsAlarmUPSOff.0
@@ -1075,19 +1075,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Is the UPS in standby mode?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9e-0f1a
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.upsoff)=1'
+            - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9b
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.upsoff)=1'
               name: 'UPS Off Alarm'
               priority: WARNING
               description: 'The UPS is in standby mode.'
 
-        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0f-1a2b
+        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0c
           name: 'Alarm - Charger Fail'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.22.0' # dupsAlarmChargerFail.0
@@ -1095,19 +1095,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Does the UPS charger fail?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1a-2b3c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.chargerfail)=1'
+            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.chargerfail)=1'
               name: 'UPS Charger Fail Alarm'
               priority: HIGH
               description: 'The UPS charger has failed.'
 
-        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2b-3c4d
+        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2e
           name: 'Alarm - Fan Fail'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.23.0' # dupsAlarmFanFail.0
@@ -1115,19 +1115,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Does the UPS fan fail?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3c-4d5e
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.fanfail)=1'
+            - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3f
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.fanfail)=1'
               name: 'UPS Fan Fail Alarm'
               priority: HIGH
               description: 'A UPS fan has failed.'
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4d-5e6f
+        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4a
           name: 'Alarm - Output Off'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.25.0' # dupsAlarmOutputOff.0
@@ -1135,19 +1135,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Is the UPS output off?'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5e-6f7a
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.outputoff)=1'
+            - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5b
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.outputoff)=1'
               name: 'UPS Output Off Alarm'
               priority: HIGH
               description: 'The UPS output is off.'
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6f-7a8b
+        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6c
           name: 'Alarm - Output Breaker'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.29.0' # dupsAlarmOutputBreaker.0
@@ -1155,19 +1155,19 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'Indicates the state of output breaker.'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7a-8b9c
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.outputbreaker)=1'
+            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7d
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.outputbreaker)=1'
               name: 'UPS Output Breaker Alarm'
               priority: HIGH
               description: 'The UPS output breaker state is abnormal.'
 
-        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8b-9c0d
+        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8e
           name: 'Alarm - Emergency Power Off'
           type: SNMP_AGENT
           snmp_oid: '1.3.6.1.4.1.2254.2.4.9.31.0' # dupsAlarmEmergencyPowerOff.0
@@ -1175,14 +1175,14 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: 3 # Numeric unsigned
+          value_type: NUMERIC_UNSIGNED # Numeric unsigned
           description: 'UPS emergency power off.'
           tags:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9c-0d1e
-              expression: 'last(/UPS Delta SNMPv1 Full v4/dups.alarm.emergencypoweroff)=1'
+            - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9f
+              expression: 'last(/UPS Delta SNMPv1 Full v5/dups.alarm.emergencypoweroff)=1'
               name: 'UPS Emergency Power Off Alarm'
               priority: DISASTER
               description: 'Emergency Power Off (EPO) activated!'
