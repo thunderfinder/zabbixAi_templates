@@ -2,8 +2,8 @@ zabbix_export:
   version: '7.0'
   templates:
     - uuid: 6e8d9f5a3b4c6d7e8f9a0b1c2d3e4f5a
-      template: 'UPS Delta SNMPv1 Full v10'
-      name: 'UPS Delta SNMPv1 Full v10'
+      template: 'UPS Delta SNMPv1 Full v13'
+      name: 'UPS Delta SNMPv1 Full v13'
       description: |
         Plantilla completa para UPS Delta utilizando el MIB específico DeltaUPS-MIB.
         Basada en el archivo DeltaUPS-MIB.txt, snmpwalks realizados y el archivo delta_ups_exports2.csv.
@@ -167,7 +167,7 @@ zabbix_export:
               value: Battery
           triggers:
             - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.battery.status)<>2'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.battery.status)<>2'
               name: 'UPS Battery Not Normal'
               priority: HIGH
               description: 'The UPS battery status is not normal.'
@@ -187,18 +187,18 @@ zabbix_export:
               value: Battery
           triggers:
             - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
               name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
               priority: HIGH
               description: 'The UPS battery charge is critically low.'
             - uuid: 5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
               name: 'UPS Battery Charge Low (<{$BATTERY_CHARGE.WARN.MIN}%)'
               priority: WARNING
               description: 'The UPS battery charge is low.'
               dependencies:
                 - name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v10/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v13/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
 
         - uuid: 6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a
           name: 'Battery Remaining Time (Estimated)'
@@ -215,7 +215,7 @@ zabbix_export:
               value: Battery
           triggers:
             - uuid: 7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
               name: 'UPS Battery Runtime Low (<{$BATTERY_RUNTIME.CRIT.MIN.WARN} min)'
               priority: HIGH
               description: 'The UPS battery runtime remaining is low.'
@@ -353,7 +353,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 V'
-          description: 'The Input line 1 voltage of the UPS system in 1/10 V.'
+          description: 'The Input line1 voltage of the UPS system in 1/10 V.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -371,7 +371,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 A'
-          description: 'The Input line 1 current to the UPS system in 1/10 A.'
+          description: 'The Input line1 current to the UPS system in 1/10 A.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -408,7 +408,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 V'
-          description: 'The Input line 2 voltage of the UPS system in 1/10 V.'
+          description: 'The Input line2 voltage of the UPS system in 1/10 V.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -426,7 +426,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 A'
-          description: 'The Input line 2 current to the UPS system in 1/10 A.'
+          description: 'The Input line2 current to the UPS system in 1/10 A.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -463,7 +463,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 V'
-          description: 'The Input line 3 voltage of the UPS system in 1/10 V.'
+          description: 'The Input line3 voltage of the UPS system in 1/10 V.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -481,7 +481,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 A'
-          description: 'The Input line 3 current to the UPS system in 1/10 A.'
+          description: 'The Input line3 current to the UPS system in 1/10 A.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -509,7 +509,7 @@ zabbix_export:
               value: Output
           triggers:
             - uuid: 5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.source)<>0'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.source)<>0'
               name: 'UPS Output Source Changed'
               priority: WARNING
               description: 'The UPS output source has changed from normal.'
@@ -555,7 +555,7 @@ zabbix_export:
           history: 7d
           trends: 365d
           units: '0.1 V'
-          description: 'The Output line 1 voltage of the UPS system in 1/10 V.'
+          description: 'The Output line1 voltage of the UPS system in 1/10 V.'
           preprocessing:
             - type: MULTIPLIER
               parameters:
@@ -611,18 +611,18 @@ zabbix_export:
               value: Output
           triggers:
             - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L1 load is critically high.'
             - uuid: 3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L1 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L1 load is high.'
               dependencies:
                 - name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 2 ---
         - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
@@ -690,18 +690,18 @@ zabbix_export:
               value: Output
           triggers:
             - uuid: 8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L2 load is critically high.'
             - uuid: 9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L2 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L2 load is high.'
               dependencies:
                 - name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 3 ---
         - uuid: 0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e
@@ -769,18 +769,18 @@ zabbix_export:
               value: Output
           triggers:
             - uuid: 4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L3 load is critically high.'
             - uuid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L3 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L3 load is high.'
               dependencies:
                 - name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v10/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v13/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- dupsBypass (Bypass) ---
         - uuid: 6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e
@@ -910,7 +910,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.powerfail)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.powerfail)=1'
               name: 'UPS Power Fail Alarm'
               priority: HIGH
               description: 'Power failed! The UPS is operating on battery power.'
@@ -929,7 +929,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.batterylow)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.batterylow)=1'
               name: 'UPS Battery Low Alarm'
               priority: HIGH
               description: 'The UPS batteries are low and will soon be exhausted.'
@@ -948,7 +948,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.loadwarning)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.loadwarning)=1'
               name: 'UPS Load Warning Alarm'
               priority: WARNING
               description: 'The UPS load is approaching a warning level.'
@@ -967,7 +967,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.loadseverity)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.loadseverity)=1'
               name: 'UPS Load Severity Alarm'
               priority: HIGH
               description: 'The UPS load is at a severity level.'
@@ -986,7 +986,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.outputoverload)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.outputoverload)=1'
               name: 'UPS Output Overload Alarm'
               priority: HIGH
               description: 'The UPS is overloaded!'
@@ -1005,7 +1005,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.temperature)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.temperature)=1'
               name: 'UPS Over Temperature Alarm'
               priority: HIGH
               description: 'The UPS is overheating.'
@@ -1024,7 +1024,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.upsoff)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.upsoff)=1'
               name: 'UPS Off Alarm'
               priority: WARNING
               description: 'The UPS is in standby mode.'
@@ -1043,7 +1043,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.chargerfail)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.chargerfail)=1'
               name: 'UPS Charger Fail Alarm'
               priority: HIGH
               description: 'The UPS charger has failed.'
@@ -1062,7 +1062,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.fanfail)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.fanfail)=1'
               name: 'UPS Fan Fail Alarm'
               priority: HIGH
               description: 'A UPS fan has failed.'
@@ -1081,7 +1081,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.outputoff)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.outputoff)=1'
               name: 'UPS Output Off Alarm'
               priority: HIGH
               description: 'The UPS output is off.'
@@ -1100,7 +1100,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.outputbreaker)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.outputbreaker)=1'
               name: 'UPS Output Breaker Alarm'
               priority: HIGH
               description: 'The UPS output breaker state is abnormal.'
@@ -1119,7 +1119,7 @@ zabbix_export:
               value: Alarms
           triggers:
             - uuid: 6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e
-              expression: 'last(/UPS Delta SNMPv1 Full v10/dups.alarm.emergencypoweroff)=1'
+              expression: 'last(/UPS Delta SNMPv1 Full v13/dups.alarm.emergencypoweroff)=1'
               name: 'UPS Emergency Power Off Alarm'
               priority: DISASTER
               description: 'Emergency Power Off (EPO) activated!'
