@@ -1,0 +1,469 @@
+zabbix_export:
+  version: '7.0'
+  templates:
+    - uuid: 4c6b7c3f1a2d4e8b9f0c5a6e2d7f1a3b
+      template: 'UPS Delta SNMPv1'
+      name: 'UPS Delta SNMPv1'
+      description: |
+        Plantilla para UPS Delta utilizando el MIB específico DeltaUPS-MIB.
+        Basada en el archivo DeltaUPS-MIB.txt proporcionado.
+        Configurada para usar SNMPv1.
+        Autor: Basado en análisis de MIB y conocimiento de Zabbix 7.0.
+      groups:
+        - name: 'UPS'
+      items:
+        # --- dupsIdent (Identification) ---
+        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+          name: 'UPS Model Name'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.1.0' # dupsIdentModelName.0
+          key: dups.ident.modelname
+          delay: 1h
+          history: 7d
+          trends: '0'
+          value_type: CHAR
+          description: 'The model name of the UPS.'
+          tags:
+            - tag: Application
+              value: Identification
+
+        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e
+          name: 'UPS Firmware Revision'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.2.0' # dupsIdentFirmwareRevision.0
+          key: dups.ident.firmware
+          delay: 1h
+          history: 7d
+          trends: '0'
+          value_type: CHAR
+          description: 'The firmware revision of the UPS.'
+          tags:
+            - tag: Application
+              value: Identification
+
+        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f
+          name: 'UPS Serial Number'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.4.0' # dupsIdentSerialNumber.0
+          key: dups.ident.serialnumber
+          delay: 1h
+          history: 7d
+          trends: '0'
+          value_type: CHAR
+          description: 'The serial number of the UPS.'
+          tags:
+            - tag: Application
+              value: Identification
+
+        # --- dupsBattery (Battery) ---
+        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a
+          name: 'Battery Status'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.1.0' # dupsBatteryStatus.0
+          key: dups.battery.status
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          description: |
+            The status of the UPS batteries.
+            1=unknown, 2=batteryNormal, 3=batteryLow, 4=batteryInFaultCondition
+          valuemap:
+            name: 'Delta UPS Battery Status'
+          tags:
+            - tag: Application
+              value: Battery
+          triggers:
+            - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b
+              expression: 'last(/UPS Delta SNMPv1/dups.battery.status)=3'
+              name: 'UPS Battery Low'
+              priority: HIGH
+              description: 'The UPS battery is low.'
+            - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c
+              expression: 'last(/UPS Delta SNMPv1/dups.battery.status)=4'
+              name: 'UPS Battery Fault'
+              priority: DISASTER
+              description: 'The UPS battery is in a fault condition.'
+
+        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d
+          name: 'Battery Charge Percentage'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.2.0' # dupsBatteryCharge.0
+          key: dups.battery.charge
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: '%'
+          description: 'An estimate of the battery charge state expressed as a percentage of full charge.'
+          tags:
+            - tag: Application
+              value: Battery
+          triggers:
+            - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e
+              expression: 'last(/UPS Delta SNMPv1/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+              name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
+              priority: HIGH
+              description: 'The UPS battery charge is critically low.'
+            - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f
+              expression: 'last(/UPS Delta SNMPv1/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
+              name: 'UPS Battery Charge Low (<{$BATTERY_CHARGE.WARN.MIN}%)'
+              priority: WARNING
+              description: 'The UPS battery charge is low.'
+              dependencies:
+                - name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
+                  expression: 'last(/UPS Delta SNMPv1/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+
+        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a
+          name: 'Battery Remaining Time'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.3.0' # dupsBatteryRemainingTime.0
+          key: dups.battery.runtime
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: min
+          description: 'An estimate of the time to battery charge depletion under the present load conditions.'
+          tags:
+            - tag: Application
+              value: Battery
+          triggers:
+            - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b
+              expression: 'last(/UPS Delta SNMPv1/dups.battery.runtime)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
+              name: 'UPS Battery Runtime Low (<{$BATTERY_RUNTIME.CRIT.MIN.WARN} min)'
+              priority: HIGH
+              description: 'The UPS battery runtime remaining is low.'
+
+        # --- dupsInput (Input) ---
+        - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c
+          name: 'Input Line Bads'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.1.0' # dupsInputLineBads.0
+          key: dups.input.linebads
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          description: 'A count of the number of times the input entered an out-of-tolerance condition.'
+          tags:
+            - tag: Application
+              value: Input
+          triggers:
+            - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d
+              expression: 'last(/UPS Delta SNMPv1/dups.input.linebads)>0'
+              name: 'UPS Input Line Bads Count Increased'
+              priority: WARNING
+              description: 'The UPS has detected an out-of-tolerance condition on the input line.'
+
+        - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7c8d9e
+          name: 'Input Frequency'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.2.0' # dupsInputFrequency.0
+          key: dups.input.frequency
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: 'Hz'
+          description: 'The current input frequency.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Input
+
+        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8d9e0f
+          name: 'Input Voltage'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.3.0' # dupsInputVoltage.0
+          key: dups.input.voltage
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: V
+          description: 'The current input voltage.'
+          tags:
+            - tag: Application
+              value: Input
+
+        # --- dupsOutput (Output) ---
+        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9e0f1a
+          name: 'Output Source'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.1.0' # dupsOutputSource.0
+          key: dups.output.source
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          description: |
+            The present source of output power.
+            1=other, 2=none, 3=normal, 4=bypass, 5=battery, 6=booster, 7=reducer
+          valuemap:
+            name: 'Delta UPS Output Source'
+          tags:
+            - tag: Application
+              value: Output
+          triggers:
+            - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0f1a2b
+              expression: 'last(/UPS Delta SNMPv1/dups.output.source)<>3'
+              name: 'UPS Output Source Changed'
+              priority: WARNING
+              description: 'The UPS output source has changed from normal.'
+
+        - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1a-2b3c
+          name: 'Output Frequency'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.2.0' # dupsOutputFrequency.0
+          key: dups.output.frequency
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: 'Hz'
+          description: 'The current output frequency.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Output
+
+        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2b-3c4d
+          name: 'Output Voltage'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.3.0' # dupsOutputVoltage.0
+          key: dups.output.voltage
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: V
+          description: 'The current output voltage.'
+          tags:
+            - tag: Application
+              value: Output
+
+        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3c-4d5e
+          name: 'Output Current'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.4.0' # dupsOutputCurrent.0
+          key: dups.output.current
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: '0.1 A'
+          description: 'The current output current.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Output
+
+        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4d-5e6f
+          name: 'Output Load Percentage'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.5.0' # dupsOutputLoad.0
+          key: dups.output.load
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: '%'
+          description: 'The current UPS load expressed as a percentage of the rated capacity.'
+          tags:
+            - tag: Application
+              value: Output
+          triggers:
+            - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5e-6f7a
+              expression: 'last(/UPS Delta SNMPv1/dups.output.load)>{$UPS_LOAD.CRIT.MAX}'
+              name: 'UPS Output Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
+              priority: HIGH
+              description: 'The UPS output load is critically high.'
+            - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6f-7a8b
+              expression: 'last(/UPS Delta SNMPv1/dups.output.load)>{$UPS_LOAD.WARN.MAX}'
+              name: 'UPS Output Load High (> {$UPS_LOAD.WARN.MAX}%)'
+              priority: WARNING
+              description: 'The UPS output load is high.'
+              dependencies:
+                - name: 'UPS Output Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
+                  expression: 'last(/UPS Delta SNMPv1/dups.output.load)>{$UPS_LOAD.CRIT.MAX}'
+
+        - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7a-8b9c
+          name: 'Output Active Power'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.7.0' # dupsOutputActivePower.0
+          key: dups.output.power
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: W
+          description: 'The current output active power.'
+          tags:
+            - tag: Application
+              value: Output
+
+        # --- dupsBypass (Bypass) ---
+        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8b-9c0d
+          name: 'Bypass Frequency'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.1.0' # dupsBypassFrequency.0
+          key: dups.bypass.frequency
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: 'Hz'
+          description: 'The current bypass frequency.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Bypass
+
+        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9c-0d1e
+          name: 'Bypass Voltage'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.2.0' # dupsBypassVoltage.0
+          key: dups.bypass.voltage
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: V
+          description: 'The current bypass voltage.'
+          tags:
+            - tag: Application
+              value: Bypass
+
+        # --- dupsEnvironment (Environment) ---
+        # Se asume que estos pueden no estar presentes en todos los modelos
+        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0d-1e2f
+          name: 'Environment Temperature'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.8.1.0' # dupsEnvTemperature.0
+          key: dups.env.temperature
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: C
+          description: 'The current environment temperature.'
+          preprocessing:
+            - type: MULTIPLIER
+              parameters:
+                - '0.1'
+          tags:
+            - tag: Application
+              value: Environment
+
+        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1e-2f3a
+          name: 'Environment Humidity'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.8.2.0' # dupsEnvHumidity.0
+          key: dups.env.humidity
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          units: '%'
+          description: 'The current environment relative humidity.'
+          tags:
+            - tag: Application
+              value: Environment
+
+        # --- dupsAlarm (Alarms) ---
+        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2f-3a4b
+          name: 'Last Alarm Event'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.1.0' # dupsAlarmEvent.0
+          key: dups.alarm.event
+          delay: 5m
+          history: 7d
+          trends: '0'
+          value_type: CHAR
+          description: 'The last alarm event.'
+          tags:
+            - tag: Application
+              value: Alarms
+
+        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3a-4b5c
+          name: 'Number of Active Alarms'
+          type: SNMP_AGENT
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.2.0' # dupsAlarmCount.0
+          key: dups.alarm.count
+          delay: 5m
+          history: 7d
+          trends: 365d
+          value_type: NUMERIC_UNSIGNED
+          description: 'The number of active alarms.'
+          tags:
+            - tag: Application
+              value: Alarms
+          triggers:
+            - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4b-5c6d
+              expression: 'last(/UPS Delta SNMPv1/dups.alarm.count)>0'
+              name: 'UPS Has Active Alarms'
+              priority: AVERAGE
+              description: 'The UPS is reporting active alarms.'
+
+      macros:
+        - macro: '{$BATTERY_CHARGE.CRIT.MIN}'
+          value: '10'
+          description: 'Minimum battery charge percentage for critical alert'
+        - macro: '{$BATTERY_CHARGE.WARN.MIN}'
+          value: '20'
+          description: 'Minimum battery charge percentage for warning alert'
+        - macro: '{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
+          value: '5'
+          description: 'Minimum battery runtime in minutes for warning alert'
+        - macro: '{$SNMP_COMMUNITY}'
+          value: 'public'
+          description: 'SNMP community name'
+        - macro: '{$UPS_LOAD.CRIT.MAX}'
+          value: '95'
+          description: 'Maximum output load percentage for critical alert'
+        - macro: '{$UPS_LOAD.WARN.MAX}'
+          value: '85'
+          description: 'Maximum output load percentage for warning alert'
+      valuemaps:
+        - uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          name: 'Delta UPS Battery Status'
+          mappings:
+            - value: '1'
+              newvalue: 'unknown'
+            - value: '2'
+              newvalue: 'batteryNormal'
+            - value: '3'
+              newvalue: 'batteryLow'
+            - value: '4'
+              newvalue: 'batteryInFaultCondition'
+
+        - uuid: b2c3d4e5-f678-90ab-cdef-1234567890ab
+          name: 'Delta UPS Output Source'
+          mappings:
+            - value: '1'
+              newvalue: 'other'
+            - value: '2'
+              newvalue: 'none'
+            - value: '3'
+              newvalue: 'normal'
+            - value: '4'
+              newvalue: 'bypass'
+            - value: '5'
+              newvalue: 'battery'
+            - value: '6'
+              newvalue: 'booster'
+            - value: '7'
+              newvalue: 'reducer'
