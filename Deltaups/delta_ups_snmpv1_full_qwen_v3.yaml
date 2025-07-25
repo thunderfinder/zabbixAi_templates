@@ -2,8 +2,8 @@ zabbix_export:
   version: '7.0'
   templates:
     - uuid: 6e8d9f5a3b4c6d7e8f9a0b1c2d3e4f5a
-      template: 'UPS Delta SNMPv1 Full v6'
-      name: 'UPS Delta SNMPv1 Full v6'
+      template: 'UPS Delta SNMPv1 Full v7'
+      name: 'UPS Delta SNMPv1 Full v7'
       description: |
         Plantilla completa para UPS Delta utilizando el MIB específico DeltaUPS-MIB.
         Basada en el archivo DeltaUPS-MIB.txt, snmpwalks realizados y el archivo delta_ups_exports2.csv.
@@ -11,13 +11,13 @@ zabbix_export:
         Autor: Basado en análisis de MIB, snmpwalk y datos del CSV.
         Incluye ítems, triggers basados en alarmas del CSV y monitoreo trifásico.
       groups:
-        - name: 'UPS'
+        - name: 'Templates'
       items:
         # --- dupsIdent (Identification) ---
-        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c60
+        - uuid: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c60
           name: 'UPS Manufacturer'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.1.0' # dupsIdentManufacturer.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.1.0'
           key: dups.ident.manufacturer
           delay: 1h
           history: 7d
@@ -27,10 +27,10 @@ zabbix_export:
             - tag: Application
               value: Identification
 
-        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d71
+        - uuid: 2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d71
           name: 'UPS Model'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.2.0' # dupsIdentModel.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.2.0'
           key: dups.ident.model
           delay: 1h
           history: 7d
@@ -40,10 +40,10 @@ zabbix_export:
             - tag: Application
               value: Identification
 
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6d-7e82
+        - uuid: 3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e82
           name: 'UPS Firmware Version'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.3.0' # dupsIdentUPSSoftwareVersion.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.3.0'
           key: dups.ident.firmware
           delay: 1h
           history: 7d
@@ -53,10 +53,10 @@ zabbix_export:
             - tag: Application
               value: Identification
 
-        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d73
+        - uuid: 4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f93
           name: 'UPS Agent Software Version'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.4.0' # dupsIdentAgentSoftwareVersion.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.4.0'
           key: dups.ident.agentversion
           delay: 1h
           history: 7d
@@ -66,10 +66,10 @@ zabbix_export:
             - tag: Application
               value: Identification
 
-        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e84
+        - uuid: 5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a04
           name: 'UPS Name'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.5.0' # dupsIdentName.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.5.0'
           key: dups.ident.name
           delay: 1h
           history: 7d
@@ -79,10 +79,10 @@ zabbix_export:
             - tag: Application
               value: Identification
 
-        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f95
+        - uuid: 6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b15
           name: 'Attached Devices'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.6.0' # dupsAttachedDevices.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.6.0'
           key: dups.ident.attacheddevices
           delay: 1h
           history: 7d
@@ -93,10 +93,10 @@ zabbix_export:
               value: Identification
 
         # --- dupsRating (Ratings) ---
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a06
+        - uuid: 7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c26
           name: 'Rating Output VA'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.7.0' # dupsRatingOutputVA.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.7.0'
           key: dups.rating.outputva
           delay: 1h
           history: 7d
@@ -107,10 +107,10 @@ zabbix_export:
             - tag: Application
               value: Rating
 
-        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b17
+        - uuid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d37
           name: 'Rating Input Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.10.0' # dupsRatingInputVoltage.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.10.0'
           key: dups.rating.inputvoltage
           delay: 1h
           history: 7d
@@ -121,10 +121,10 @@ zabbix_export:
             - tag: Application
               value: Rating
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c28
+        - uuid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e48
           name: 'Rating Battery Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.12.0' # dupsRatingBatteryVoltage.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.1.12.0'
           key: dups.rating.batteryvoltage
           delay: 1h
           history: 7d
@@ -136,10 +136,10 @@ zabbix_export:
               value: Rating
 
         # --- dupsBattery (Battery) ---
-        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d39
+        - uuid: 0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f59
           name: 'Battery Condition'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.1.0' # dupsBatteryCondition.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.1.0'
           key: dups.battery.condition
           delay: 5m
           history: 7d
@@ -151,10 +151,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4a
+        - uuid: 1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6a
           name: 'Battery Status'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.2.0' # dupsBatteryStatus.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.2.0'
           key: dups.battery.status
           delay: 5m
           history: 7d
@@ -166,16 +166,16 @@ zabbix_export:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5b
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.battery.status)<>2' # Asumiendo 2=normal basado en estándares comunes
+            - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.battery.status)<>2'
               name: 'UPS Battery Not Normal'
               priority: HIGH
               description: 'The UPS battery status is not normal.'
 
-        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6c
+        - uuid: 3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d
           name: 'Battery Charge Percentage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.3.0' # dupsBatteryCharge.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.3.0'
           key: dups.battery.charge
           delay: 5m
           history: 7d
@@ -186,24 +186,24 @@ zabbix_export:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+            - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
               name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
               priority: HIGH
               description: 'The UPS battery charge is critically low.'
-            - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8e
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
+            - uuid: 5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.battery.charge)<{$BATTERY_CHARGE.WARN.MIN}'
               name: 'UPS Battery Charge Low (<{$BATTERY_CHARGE.WARN.MIN}%)'
               priority: WARNING
               description: 'The UPS battery charge is low.'
               dependencies:
                 - name: 'UPS Battery Charge Critically Low (<{$BATTERY_CHARGE.CRIT.MIN}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v6/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v7/dups.battery.charge)<{$BATTERY_CHARGE.CRIT.MIN}'
 
-        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9f
+        - uuid: 6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a
           name: 'Battery Remaining Time (Estimated)'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.5.0' # dupsBatteryEstimatedTime.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.5.0'
           key: dups.battery.runtime.estimated
           delay: 5m
           history: 7d
@@ -214,16 +214,16 @@ zabbix_export:
             - tag: Application
               value: Battery
           triggers:
-            - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0a
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
+            - uuid: 7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.battery.runtime.estimated)<{$BATTERY_RUNTIME.CRIT.MIN.WARN}'
               name: 'UPS Battery Runtime Low (<{$BATTERY_RUNTIME.CRIT.MIN.WARN} min)'
               priority: HIGH
               description: 'The UPS battery runtime remaining is low.'
 
-        - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1b
+        - uuid: 8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c
           name: 'Battery Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.6.0' # dupsBatteryVoltage.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.6.0'
           key: dups.battery.voltage
           delay: 5m
           history: 7d
@@ -238,10 +238,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2c
+        - uuid: 9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d
           name: 'Battery Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.7.0' # dupsBatteryCurrent.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.7.0'
           key: dups.battery.current
           delay: 5m
           history: 7d
@@ -256,10 +256,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3d
+        - uuid: 0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e
           name: 'Battery Capacity'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.8.0' # dupsBatteryCapacity.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.8.0'
           key: dups.battery.capacity
           delay: 5m
           history: 7d
@@ -270,10 +270,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4e
+        - uuid: 1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
           name: 'Battery Temperature'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.9.0' # dupsTemperature.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.9.0'
           key: dups.battery.temperature
           delay: 5m
           history: 7d
@@ -284,10 +284,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5f
+        - uuid: 2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a
           name: 'Last Battery Replacement Date'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.10.0' # dupsLastReplaceDate.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.10.0'
           key: dups.battery.lastreplacedate
           delay: 1d
           history: 7d
@@ -297,10 +297,10 @@ zabbix_export:
             - tag: Application
               value: Battery
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6a
+        - uuid: 3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b
           name: 'Next Battery Replacement Date'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.11.0' # dupsNextReplaceDate.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.7.11.0'
           key: dups.battery.nextreplacedate
           delay: 1d
           history: 7d
@@ -312,10 +312,10 @@ zabbix_export:
 
         # --- dupsInput (Input) ---
         # Se asume sistema trifásico basado en la presencia de InputLine 1, 2 y 3
-        - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7b
+        - uuid: 4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c
           name: 'Input Lines Number'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.1.0' # dupsInputNumLines.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.1.0'
           key: dups.input.numlines
           delay: 1h
           history: 7d
@@ -326,10 +326,10 @@ zabbix_export:
               value: Input
 
         # --- Input Line 1 ---
-        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8c
+        - uuid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d
           name: 'Input L1 Frequency'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.2.0' # dupsInputFrequency1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.2.0'
           key: dups.input.l1.frequency
           delay: 5m
           history: 7d
@@ -344,10 +344,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9d
+        - uuid: 6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e
           name: 'Input L1 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.3.0' # dupsInputVoltage1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.3.0'
           key: dups.input.l1.voltage
           delay: 5m
           history: 7d
@@ -362,10 +362,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0e
+        - uuid: 7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f
           name: 'Input L1 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.4.0' # dupsInputCurrent1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.4.0'
           key: dups.input.l1.current
           delay: 5m
           history: 7d
@@ -381,10 +381,10 @@ zabbix_export:
               value: Input
 
         # --- Input Line 2 ---
-        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1f
+        - uuid: 8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a
           name: 'Input L2 Frequency'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.5.0' # dupsInputFrequency2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.5.0'
           key: dups.input.l2.frequency
           delay: 5m
           history: 7d
@@ -399,10 +399,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2a
+        - uuid: 9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b
           name: 'Input L2 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.6.0' # dupsInputVoltage2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.6.0'
           key: dups.input.l2.voltage
           delay: 5m
           history: 7d
@@ -417,10 +417,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3b
+        - uuid: 0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c
           name: 'Input L2 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.7.0' # dupsInputCurrent2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.7.0'
           key: dups.input.l2.current
           delay: 5m
           history: 7d
@@ -436,10 +436,10 @@ zabbix_export:
               value: Input
 
         # --- Input Line 3 ---
-        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4c
+        - uuid: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d
           name: 'Input L3 Frequency'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.8.0' # dupsInputFrequency3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.8.0'
           key: dups.input.l3.frequency
           delay: 5m
           history: 7d
@@ -454,10 +454,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5d
+        - uuid: 2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e
           name: 'Input L3 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.9.0' # dupsInputVoltage3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.9.0'
           key: dups.input.l3.voltage
           delay: 5m
           history: 7d
@@ -472,10 +472,10 @@ zabbix_export:
             - tag: Application
               value: Input
 
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6e
+        - uuid: 3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f
           name: 'Input L3 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.10.0' # dupsInputCurrent3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.4.10.0'
           key: dups.input.l3.current
           delay: 5m
           history: 7d
@@ -491,10 +491,10 @@ zabbix_export:
               value: Input
 
         # --- dupsOutput (Output) ---
-        - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7f
+        - uuid: 4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a
           name: 'Output Source'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.1.0' # dupsOutputSource.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.1.0'
           key: dups.output.source
           delay: 5m
           history: 7d
@@ -508,16 +508,16 @@ zabbix_export:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8a
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.source)<>0' # Asumiendo 0=normal según el MIB
+            - uuid: 5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.source)<>0'
               name: 'UPS Output Source Changed'
               priority: WARNING
               description: 'The UPS output source has changed from normal.'
 
-        - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9b
+        - uuid: 6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c
           name: 'Output Frequency'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.2.0' # dupsOutputFrequency.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.2.0'
           key: dups.output.frequency
           delay: 5m
           history: 7d
@@ -532,10 +532,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0c
+        - uuid: 7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d
           name: 'Output Lines Number'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.3.0' # dupsOutputNumLines.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.3.0'
           key: dups.output.numlines
           delay: 1h
           history: 7d
@@ -546,10 +546,10 @@ zabbix_export:
               value: Output
 
         # --- Output Line 1 ---
-        - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1d
+        - uuid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e
           name: 'Output L1 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.4.0' # dupsOutputVoltage1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.4.0'
           key: dups.output.l1.voltage
           delay: 5m
           history: 7d
@@ -564,10 +564,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2e
+        - uuid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f
           name: 'Output L1 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.5.0' # dupsOutputCurrent1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.5.0'
           key: dups.output.l1.current
           delay: 5m
           history: 7d
@@ -582,10 +582,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3f
+        - uuid: 0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a
           name: 'Output L1 Power'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.6.0' # dupsOutputPower1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.6.0'
           key: dups.output.l1.power
           delay: 5m
           history: 7d
@@ -596,10 +596,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4b
+        - uuid: 1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b
           name: 'Output L1 Load Percentage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.7.0' # dupsOutputLoad1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.7.0'
           key: dups.output.l1.load
           delay: 5m
           history: 7d
@@ -610,25 +610,25 @@ zabbix_export:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5c
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L1 load is critically high.'
-            - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l1.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L1 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L1 load is high.'
               dependencies:
                 - name: 'UPS Output L1 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l1.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 2 ---
-        - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7e
+        - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
           name: 'Output L2 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.8.0' # dupsOutputVoltage2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.8.0'
           key: dups.output.l2.voltage
           delay: 5m
           history: 7d
@@ -643,10 +643,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8f
+        - uuid: 5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f
           name: 'Output L2 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.9.0' # dupsOutputCurrent2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.9.0'
           key: dups.output.l2.current
           delay: 5m
           history: 7d
@@ -661,10 +661,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9a
+        - uuid: 6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a
           name: 'Output L2 Power'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.10.0' # dupsOutputPower2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.10.0'
           key: dups.output.l2.power
           delay: 5m
           history: 7d
@@ -675,10 +675,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0b
+        - uuid: 7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
           name: 'Output L2 Load Percentage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.11.0' # dupsOutputLoad2.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.11.0'
           key: dups.output.l2.load
           delay: 5m
           history: 7d
@@ -689,25 +689,25 @@ zabbix_export:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1c
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L2 load is critically high.'
-            - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l2.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L2 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L2 load is high.'
               dependencies:
                 - name: 'UPS Output L2 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l2.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- Output Line 3 ---
-        - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3e
+        - uuid: 0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e
           name: 'Output L3 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.12.0' # dupsOutputVoltage3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.12.0'
           key: dups.output.l3.voltage
           delay: 5m
           history: 7d
@@ -722,10 +722,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4f
+        - uuid: 1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
           name: 'Output L3 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.13.0' # dupsOutputCurrent3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.13.0'
           key: dups.output.l3.current
           delay: 5m
           history: 7d
@@ -740,10 +740,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5a
+        - uuid: 2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a
           name: 'Output L3 Power'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.14.0' # dupsOutputPower3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.14.0'
           key: dups.output.l3.power
           delay: 5m
           history: 7d
@@ -754,10 +754,10 @@ zabbix_export:
             - tag: Application
               value: Output
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6b
+        - uuid: 3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b
           name: 'Output L3 Load Percentage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.15.0' # dupsOutputLoad3.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.5.15.0'
           key: dups.output.l3.load
           delay: 5m
           history: 7d
@@ -768,25 +768,25 @@ zabbix_export:
             - tag: Application
               value: Output
           triggers:
-            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7c
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+            - uuid: 4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
               name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
               priority: HIGH
               description: 'The UPS output L3 load is critically high.'
-            - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
+            - uuid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l3.load)>{$UPS_LOAD.WARN.MAX}'
               name: 'UPS Output L3 Load High (> {$UPS_LOAD.WARN.MAX}%)'
               priority: WARNING
               description: 'The UPS output L3 load is high.'
               dependencies:
                 - name: 'UPS Output L3 Load Critical (> {$UPS_LOAD.CRIT.MAX}%)'
-                  expression: 'last(/UPS Delta SNMPv1 Full v6/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
+                  expression: 'last(/UPS Delta SNMPv1 Full v7/dups.output.l3.load)>{$UPS_LOAD.CRIT.MAX}'
 
         # --- dupsBypass (Bypass) ---
-        - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9e
+        - uuid: 6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e
           name: 'Bypass Frequency'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.1.0' # dupsBypassFrequency.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.1.0'
           key: dups.bypass.frequency
           delay: 5m
           history: 7d
@@ -801,10 +801,10 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 7c8d9e0f-1a2b-3c4d-5e6f-7a8b-9c0f
+        - uuid: 7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f
           name: 'Bypass Lines Number'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.2.0' # dupsBypassNumLines.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.2.0'
           key: dups.bypass.numlines
           delay: 1h
           history: 7d
@@ -815,10 +815,10 @@ zabbix_export:
               value: Bypass
 
         # --- Bypass Line 1 ---
-        - uuid: 8d9e0f1a-2b3c-4d5e-6f7a-8b9c-0d1a
+        - uuid: 8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a
           name: 'Bypass L1 Voltage'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.3.0' # dupsBypassVoltage1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.3.0'
           key: dups.bypass.l1.voltage
           delay: 5m
           history: 7d
@@ -833,10 +833,10 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 9e0f1a2b-3c4d-5e6f-7a8b-9c0d-1e2b
+        - uuid: 9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b
           name: 'Bypass L1 Current'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.4.0' # dupsBypassCurrent1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.4.0'
           key: dups.bypass.l1.current
           delay: 5m
           history: 7d
@@ -851,10 +851,10 @@ zabbix_export:
             - tag: Application
               value: Bypass
 
-        - uuid: 0f1a2b3c-4d5e-6f7a-8b9c-0d1e-2f3c
+        - uuid: 0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c
           name: 'Bypass L1 Power'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.5.0' # dupsBypassPower1.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.6.5.0'
           key: dups.bypass.l1.power
           delay: 5m
           history: 7d
@@ -866,10 +866,10 @@ zabbix_export:
               value: Bypass
 
         # --- dupsEnvironment (Environment) ---
-        - uuid: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f-3a4d
+        - uuid: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d
           name: 'Environment Temperature'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.1.0' # dupsEnvTemperature.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.1.0'
           key: dups.env.temperature
           delay: 5m
           history: 7d
@@ -880,10 +880,10 @@ zabbix_export:
             - tag: Application
               value: Environment
 
-        - uuid: 2b3c4d5e-6f7a-8b9c-0d1e-2f3a-4b5e
+        - uuid: 2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e
           name: 'Environment Humidity'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.2.0' # dupsEnvHumidity.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.10.2.0'
           key: dups.env.humidity
           delay: 5m
           history: 7d
@@ -896,10 +896,10 @@ zabbix_export:
 
         # --- dupsAlarm (Alarms) ---
         # Incluimos varios de los muchos alarm bits disponibles, basados en el CSV
-        - uuid: 3c4d5e6f-7a8b-9c0d-1e2f-3a4b-5c6f
+        - uuid: 3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f
           name: 'Alarm - Power Fail'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.2.0' # dupsAlarmPowerFail.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.2.0'
           key: dups.alarm.powerfail
           delay: 5m
           history: 7d
@@ -909,16 +909,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4d5e6f7a-8b9c-0d1e-2f3a-4b5c-6d7a
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.powerfail)=1'
+            - uuid: 4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.powerfail)=1'
               name: 'UPS Power Fail Alarm'
               priority: HIGH
               description: 'Power failed! The UPS is operating on battery power.'
 
-        - uuid: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d-7e8b
+        - uuid: 5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b
           name: 'Alarm - Battery Low'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.3.0' # dupsAlarmBatteryLow.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.3.0'
           key: dups.alarm.batterylow
           delay: 5m
           history: 7d
@@ -928,16 +928,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6f7a8b9c-0d1e-2f3a-4b5c-6d7e-8f9c
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.batterylow)=1'
+            - uuid: 6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.batterylow)=1'
               name: 'UPS Battery Low Alarm'
               priority: HIGH
               description: 'The UPS batteries are low and will soon be exhausted.'
 
-        - uuid: 7a8b9c0d-1e2f-3a4b-5c6d-7e8f-9a0d
+        - uuid: 7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d
           name: 'Alarm - Load Warning'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.4.0' # dupsAlarmLoadWarning.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.4.0'
           key: dups.alarm.loadwarning
           delay: 5m
           history: 7d
@@ -947,16 +947,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 8b9c0d1e-2f3a-4b5c-6d7e-8f9a-0b1e
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.loadwarning)=1'
+            - uuid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.loadwarning)=1'
               name: 'UPS Load Warning Alarm'
               priority: WARNING
               description: 'The UPS load is approaching a warning level.'
 
-        - uuid: 9c0d1e2f-3a4b-5c6d-7e8f-9a0b-1c2f
+        - uuid: 9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f
           name: 'Alarm - Load Severity'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.5.0' # dupsAlarmLoadSeverity.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.5.0'
           key: dups.alarm.loadseverity
           delay: 5m
           history: 7d
@@ -966,16 +966,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 0d1e2f3a-4b5c-6d7e-8f9a-0b1c-2d3a
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.loadseverity)=1'
+            - uuid: 0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.loadseverity)=1'
               name: 'UPS Load Severity Alarm'
               priority: HIGH
               description: 'The UPS load is at a severity level.'
 
-        - uuid: 1e2f3a4b-5c6d-7e8f-9a0b-1c2d-3e4c
+        - uuid: 1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b
           name: 'Alarm - Output Overload'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.12.0' # dupsAlarmOutputOverload.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.12.0'
           key: dups.alarm.outputoverload
           delay: 5m
           history: 7d
@@ -985,16 +985,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 2f3a4b5c-6d7e-8f9a-0b1c-2d3e-4f5d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.outputoverload)=1'
+            - uuid: 2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.outputoverload)=1'
               name: 'UPS Output Overload Alarm'
               priority: HIGH
               description: 'The UPS is overloaded!'
 
-        - uuid: 3a4b5c6d-7e8f-9a0b-1c2d-3e4f-5a6e
+        - uuid: 3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d
           name: 'Alarm - Temperature'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.18.0' # dupsAlarmTemperature.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.18.0'
           key: dups.alarm.temperature
           delay: 5m
           history: 7d
@@ -1004,16 +1004,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4b5c6d7e-8f9a-0b1c-2d3e-4f5a-6b7f
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.temperature)=1'
+            - uuid: 4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.temperature)=1'
               name: 'UPS Over Temperature Alarm'
               priority: HIGH
               description: 'The UPS is overheating.'
 
-        - uuid: 5c6d7e8f-9a0b-1c2d-3e4f-5a6b-7c8a
+        - uuid: 5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f
           name: 'Alarm - UPS Off'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.21.0' # dupsAlarmUPSOff.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.21.0'
           key: dups.alarm.upsoff
           delay: 5m
           history: 7d
@@ -1023,16 +1023,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6d7e8f9a-0b1c-2d3e-4f5a-6b7c-8d9b
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.upsoff)=1'
+            - uuid: 6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.upsoff)=1'
               name: 'UPS Off Alarm'
               priority: WARNING
               description: 'The UPS is in standby mode.'
 
-        - uuid: 7e8f9a0b-1c2d-3e4f-5a6b-7c8d-9e0c
+        - uuid: 7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
           name: 'Alarm - Charger Fail'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.22.0' # dupsAlarmChargerFail.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.22.0'
           key: dups.alarm.chargerfail
           delay: 5m
           history: 7d
@@ -1042,16 +1042,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 8f9a0b1c-2d3e-4f5a-6b7c-8d9e-0f1d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.chargerfail)=1'
+            - uuid: 8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.chargerfail)=1'
               name: 'UPS Charger Fail Alarm'
               priority: HIGH
               description: 'The UPS charger has failed.'
 
-        - uuid: 9a0b1c2d-3e4f-5a6b-7c8d-9e0f-1a2e
+        - uuid: 9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d
           name: 'Alarm - Fan Fail'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.23.0' # dupsAlarmFanFail.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.23.0'
           key: dups.alarm.fanfail
           delay: 5m
           history: 7d
@@ -1061,16 +1061,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 0b1c2d3e-4f5a-6b7c-8d9e-0f1a-2b3f
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.fanfail)=1'
+            - uuid: 0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.fanfail)=1'
               name: 'UPS Fan Fail Alarm'
               priority: HIGH
               description: 'A UPS fan has failed.'
 
-        - uuid: 1c2d3e4f-5a6b-7c8d-9e0f-1a2b-3c4a
+        - uuid: 1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f
           name: 'Alarm - Output Off'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.25.0' # dupsAlarmOutputOff.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.25.0'
           key: dups.alarm.outputoff
           delay: 5m
           history: 7d
@@ -1080,16 +1080,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 2d3e4f5a-6b7c-8d9e-0f1a-2b3c-4d5b
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.outputoff)=1'
+            - uuid: 2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.outputoff)=1'
               name: 'UPS Output Off Alarm'
               priority: HIGH
               description: 'The UPS output is off.'
 
-        - uuid: 3e4f5a6b-7c8d-9e0f-1a2b-3c4d-5e6c
+        - uuid: 3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b
           name: 'Alarm - Output Breaker'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.29.0' # dupsAlarmOutputBreaker.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.29.0'
           key: dups.alarm.outputbreaker
           delay: 5m
           history: 7d
@@ -1099,16 +1099,16 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 4f5a6b7c-8d9e-0f1a-2b3c-4d5e-6f7d
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.outputbreaker)=1'
+            - uuid: 4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.outputbreaker)=1'
               name: 'UPS Output Breaker Alarm'
               priority: HIGH
               description: 'The UPS output breaker state is abnormal.'
 
-        - uuid: 5a6b7c8d-9e0f-1a2b-3c4d-5e6f-7a8e
+        - uuid: 5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d
           name: 'Alarm - Emergency Power Off'
           type: SNMP_AGENT
-          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.31.0' # dupsAlarmEmergencyPowerOff.0
+          snmp_oid: '1.3.6.1.4.1.2254.2.4.9.31.0'
           key: dups.alarm.emergencypoweroff
           delay: 5m
           history: 7d
@@ -1118,8 +1118,8 @@ zabbix_export:
             - tag: Application
               value: Alarms
           triggers:
-            - uuid: 6b7c8d9e-0f1a-2b3c-4d5e-6f7a-8b9f
-              expression: 'last(/UPS Delta SNMPv1 Full v6/dups.alarm.emergencypoweroff)=1'
+            - uuid: 6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e
+              expression: 'last(/UPS Delta SNMPv1 Full v7/dups.alarm.emergencypoweroff)=1'
               name: 'UPS Emergency Power Off Alarm'
               priority: DISASTER
               description: 'Emergency Power Off (EPO) activated!'
@@ -1144,7 +1144,7 @@ zabbix_export:
           value: '85'
           description: 'Maximum output load percentage for warning alert'
       valuemaps:
-        - uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567892
+        - uuid: a1b2c3d4e5f67890abcd ef1234567892
           name: 'Delta UPS Output Source'
           mappings:
             - value: '0'
