@@ -22,7 +22,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The name of the UPS manufacturer.'
           tags:
             - tag: Application
@@ -36,7 +36,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The UPS Model designation.'
           tags:
             - tag: Application
@@ -50,7 +50,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The UPS firmware/software version(s).'
           tags:
             - tag: Application
@@ -64,7 +64,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The UPS agent software version.'
           tags:
             - tag: Application
@@ -78,7 +78,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'A string identifying the UPS. This object should be set by the administrator.'
           tags:
             - tag: Application
@@ -92,7 +92,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'A string identifying the devices attached to the output(s) of the UPS.'
           tags:
             - tag: Application
@@ -107,7 +107,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: 'VA'
           description: 'The magnitude of the nominal output VA rating.'
           tags:
@@ -122,7 +122,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: V
           description: 'The magnitude of the input line voltage in Volts.'
           tags:
@@ -137,7 +137,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: V
           description: 'The magnitude of the nominal battery voltage in Volts.'
           tags:
@@ -153,7 +153,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: |
             The overall condition of the UPS batteries.
             (Valor específico depende de la definición en el MIB Delta)
@@ -169,7 +169,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: |
             The status of the UPS batteries.
             (Valor específico depende de la definición en el MIB Delta)
@@ -191,7 +191,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'An estimate of the battery charge state expressed as a percentage of full charge.'
           tags:
@@ -220,7 +220,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: min
           description: 'An estimate of the time to battery charge depletion under the present load conditions.'
           tags:
@@ -241,7 +241,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The magnitude of the battery voltage in 1/10 Volt DC.'
           preprocessing:
@@ -260,7 +260,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The magnitude of the battery current in 1/10 Amp DC.'
           preprocessing:
@@ -279,7 +279,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'The remaining battery capacity expressed in percent.'
           tags:
@@ -294,7 +294,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: C
           description: 'The ambient temperature at or near the UPS Battery casing.'
           tags:
@@ -309,7 +309,7 @@ zabbix_export:
           delay: 1d
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The last battery replacement date. The format is YYYYMMDD.'
           tags:
             - tag: Application
@@ -323,7 +323,7 @@ zabbix_export:
           delay: 1d
           history: 7d
           trends: '0'
-          value_type: CHAR
+          value_type: 1 # Character
           description: 'The next battery replacement date. The format is YYYYMMDD.'
           tags:
             - tag: Application
@@ -339,7 +339,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'The number of input lines utilized in this device.'
           tags:
             - tag: Application
@@ -354,7 +354,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 1 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -373,7 +373,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -392,7 +392,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 1 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -412,7 +412,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 2 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -431,7 +431,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 2 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -450,7 +450,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 2 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -470,7 +470,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current input line 3 frequency to the UPS system in 1/10 Hz.'
           preprocessing:
@@ -489,7 +489,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Input line 3 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -508,7 +508,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Input line 3 current to the UPS system in 1/10 A.'
           preprocessing:
@@ -528,7 +528,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: |
             The present source of output power.
             normal(0),battery(1),bypass(2),reducing(3),boosting(4),manualBypass(5),other(6),none(7)
@@ -552,7 +552,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 Hz'
           description: 'The present output frequency in 1/10 Hz.'
           preprocessing:
@@ -571,7 +571,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'The number of output lines utilized in this device.'
           tags:
             - tag: Application
@@ -586,7 +586,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -605,7 +605,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 1 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -624,7 +624,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: W
           description: 'The Output line 1 real power of the UPS system in watts.'
           tags:
@@ -639,7 +639,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 1 load expressed in percent of rated capacity.'
           tags:
@@ -669,7 +669,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 2 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -688,7 +688,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 2 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -707,7 +707,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: W
           description: 'The Output line 2 real power of the UPS system in watts.'
           tags:
@@ -722,7 +722,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 2 load expressed in percent of rated capacity.'
           tags:
@@ -752,7 +752,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The Output line 3 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -771,7 +771,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The Output line 3 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -790,7 +790,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: W
           description: 'The Output line 3 real power of the UPS system in watts.'
           tags:
@@ -805,7 +805,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'The current UPS output line 3 load expressed in percent of rated capacity.'
           tags:
@@ -835,7 +835,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 Hz'
           description: 'The current bypass frequency in 1/10 Hz.'
           preprocessing:
@@ -854,7 +854,7 @@ zabbix_export:
           delay: 1h
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'The number of bypass lines utilized in this device.'
           tags:
             - tag: Application
@@ -869,7 +869,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 V'
           description: 'The bypass line 1 voltage of the UPS system in 1/10 V.'
           preprocessing:
@@ -888,7 +888,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '0.1 A'
           description: 'The bypass line 1 current of the UPS system in 1/10 A.'
           preprocessing:
@@ -907,7 +907,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: W
           description: 'The bypass line 1 real power of the UPS system in watts.'
           tags:
@@ -923,7 +923,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: C
           description: 'The ambient environmental temperature.'
           tags:
@@ -938,7 +938,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           units: '%'
           description: 'The environmental relative humidity.'
           tags:
@@ -955,7 +955,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Does the input power fail?'
           tags:
             - tag: Application
@@ -975,7 +975,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Are the UPS batteries low?'
           tags:
             - tag: Application
@@ -995,7 +995,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Does the UPS load warning?'
           tags:
             - tag: Application
@@ -1015,7 +1015,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Does the UPS load severity?'
           tags:
             - tag: Application
@@ -1035,7 +1035,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'The UPS overload!.'
           tags:
             - tag: Application
@@ -1055,7 +1055,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'The UPS is over heat.'
           tags:
             - tag: Application
@@ -1075,7 +1075,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Is the UPS in standby mode?'
           tags:
             - tag: Application
@@ -1095,7 +1095,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Does the UPS charger fail?'
           tags:
             - tag: Application
@@ -1115,7 +1115,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Does the UPS fan fail?'
           tags:
             - tag: Application
@@ -1135,7 +1135,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Is the UPS output off?'
           tags:
             - tag: Application
@@ -1155,7 +1155,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'Indicates the state of output breaker.'
           tags:
             - tag: Application
@@ -1175,7 +1175,7 @@ zabbix_export:
           delay: 5m
           history: 7d
           trends: 365d
-          value_type: NUMERIC_UNSIGNED
+          value_type: 3 # Numeric unsigned
           description: 'UPS emergency power off.'
           tags:
             - tag: Application
